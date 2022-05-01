@@ -7,32 +7,31 @@ exports.handler = async (event, context) => {
   let responseBody = "";
   let statusCode = 0;
 
-  const { id, bookname } = JSON.parse(event.body);
+//test
+/*
+const params = {
+    TableName: "Library",
+    Key: {
+      id: '123'
+    }
+  }; */
 
-  // test 
+  const { id } = event.pathParameters;
 
-  //const params = {
-  //  TableName: "Library",
-  //  Item: {
-  //    id: '123',
-  //    bookname: 'AWS Book'
-  //  }
-  //};
-
+  // delete book by key which is id
   const params = {
     TableName: "Library",
-    Item: {
-      id: id,
-      bookname: bookname
+    Key: {
+      id: id
     }
   };
-//create or add new books to DynamoDB
+
   try {
-    const data = await documentClient.put(params).promise();
+    const data = await documentClient.delete(params).promise();
     responseBody = JSON.stringify(data);
-    statusCode = 201;
+    statusCode = 204;
   } catch(err) {
-    responseBody = `Unable to add book: ${err}`;
+    responseBody = `Unable to delete book: ${err}`;
     statusCode = 403;
   }
 
