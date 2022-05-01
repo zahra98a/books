@@ -7,23 +7,23 @@ exports.handler = async (event, context) => {
   let responseBody = "";
   let statusCode = 0;
 
-  const { id, bookname } = JSON.parse(event.body);
-
   // test 
 
   //const params = {
-  //  TableName: "Library",
+  //  TableName: "Products",
   //  Item: {
   //    id: '123',
-  //    bookname: 'AWS Book'
+  //    productname: 'AWS Book'
   //  }
   //};
 
+  const { id, productname } = JSON.parse(event.body);
+
   const params = {
-    TableName: "Library",
+    TableName: "Products",
     Item: {
       id: id,
-      bookname: bookname
+      productname: productname
     }
   };
 //create or add new books to DynamoDB
@@ -32,7 +32,7 @@ exports.handler = async (event, context) => {
     responseBody = JSON.stringify(data);
     statusCode = 201;
   } catch(err) {
-    responseBody = `Unable to add book: ${err}`;
+    responseBody = `Unable to add item: ${err}`;
     statusCode = 403;
   }
 

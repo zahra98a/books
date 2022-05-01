@@ -8,17 +8,17 @@ exports.handler = async (event, context) => {
   let statusCode = 0;
 
   const params = {
-    TableName: "Library"
+    TableName: "Products"
   };
 
-  //scan the table and returne all the stored books
+  //scan the table and returne all the stored items
 
   try {
     const data = await documentClient.scan(params).promise();
     responseBody = JSON.stringify(data.Items);
     statusCode = 200;
   } catch(err) {
-    responseBody = `Unable to get the books: ${err}`;
+    responseBody = `Unable to get all items: ${err}`;
     statusCode = 403;
   }
 

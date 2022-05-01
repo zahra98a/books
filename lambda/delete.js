@@ -10,7 +10,7 @@ exports.handler = async (event, context) => {
 //test
 /*
 const params = {
-    TableName: "Library",
+    TableName: "Products",
     Key: {
       id: '123'
     }
@@ -18,9 +18,9 @@ const params = {
 
   const { id } = event.pathParameters;
 
-  // delete book by key which is id
+  // delete item by key which is id
   const params = {
-    TableName: "Library",
+    TableName: "Products",
     Key: {
       id: id
     }
@@ -31,7 +31,7 @@ const params = {
     responseBody = JSON.stringify(data);
     statusCode = 204;
   } catch(err) {
-    responseBody = `Unable to delete book: ${err}`;
+    responseBody = `Unable to delete item: ${err}`;
     statusCode = 403;
   }
 

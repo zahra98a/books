@@ -11,27 +11,27 @@ exports.handler = async (event, context) => {
   // test
   /*
   const params = {
-    TableName: "Library",
+    TableName: "Products",
     Key: {
       id: '123'
     },
-    UpdateExpression: "set bookname = :n",    //update the name of the book
+    UpdateExpression: "set productname = :n",    //update the name of the book
     ExpressionAttributeValues: {
       ":n": "AWS Cloud Book"
     },
     ReturnValues: "UPDATED_NEW"
   }; */
 
-  const { id, bookname } = JSON.parse(event.body);
+  const { id, productname } = JSON.parse(event.body);
 
   const params = {
-    TableName: "Library",
+    TableName: "Products",
     Key: {
       id: id
     },
-    UpdateExpression: "set bookname = :n",    //update the name of the book
+    UpdateExpression: "set productname = :n",    //update the name of the book
     ExpressionAttributeValues: {
-      ":n": bookname
+      ":n": productname
     },
     ReturnValues: "UPDATED_NEW"
   };
@@ -41,7 +41,7 @@ exports.handler = async (event, context) => {
     responseBody = JSON.stringify(data);
     statusCode = 204;
   } catch(err) {
-    responseBody = `Unable to update book: ${err}`;
+    responseBody = `Unable to update item: ${err}`;
     statusCode = 403;
   }
 
