@@ -17,10 +17,12 @@ function enqueue(params) {
     });
 }
 
+
+// in order to put a significunt number of id at a time to the system
 for(let i = 0; i < numMessages; i++){
     let params = {
     
-         MessageBody: `{ "customerId": ${String(i)}}`,
+         MessageBody: `{ "id": ${String(i)}}`,   
          QueueUrl: queueURL
     };
     enqueue(params);
